@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Presentation QR</title>
+</head>
+<body>
+<h1>Scan this QR with your Wallet</h1>
+<img id="qrImage" alt="QR Code"/>
+
+<script>
+    fetch('/generatePresentationQR')
+        .then(response => response.json())
+        .then(data => {
+            // Set the QR code as the source for the image tag
+            document.getElementById('qrImage').src = 'data:image/png;base64,' + data.qrCodeBase64;
+        })
+        .catch(error => {
+            console.error('Error fetching QR code:', error);
+        });
+</script>
+</body>
+</html>
